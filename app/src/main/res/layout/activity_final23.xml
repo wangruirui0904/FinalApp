@@ -1,10 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Final_2_3Activity">
+    android:orientation="vertical"
+    android:padding="16dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- 输入运动方式 -->
+    <EditText
+        android:id="@+id/et_sport_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="请输入运动方式"
+        android:inputType="text"
+        android:maxLength="50" />
+
+    <!-- 备注 -->
+    <EditText
+        android:id="@+id/et_sport_note"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="请输入备注"
+        android:inputType="text"
+        android:maxLength="100" />
+
+    <!-- 计时显示 -->
+    <TextView
+        android:id="@+id/tv_timer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="00:00:00"
+        android:textSize="24sp"
+        android:gravity="center"
+        android:layout_marginTop="16dp" />
+
+    <!-- 按钮布局 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp">
+
+        <!-- 暂停按钮 -->
+        <Button
+            android:id="@+id/btn_pause"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="暂停" />
+
+        <!-- 结束按钮 -->
+        <Button
+            android:id="@+id/btn_stop"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="结束" />
+
+        <!-- 新建运动按钮 -->
+        <Button
+            android:id="@+id/btn_new"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="新建运动" />
+    </LinearLayout>
+
+    <!-- 显示运动结果 -->
+    <LinearLayout
+        android:id="@+id/ll_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:layout_marginTop="16dp">
+
+        <TextView
+            android:id="@+id/tv_sport_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="运动方式："
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="运动时间："
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_note"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="备注："
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_calories"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="消耗卡路里："
+            android:textSize="18sp" />
+    </LinearLayout>
+</LinearLayout>
