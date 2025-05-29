@@ -5,6 +5,108 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context=".Final_2_2_1">
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/final_text_page1_btn3_B1_T1"
+        android:textSize="16sp"
+        android:textColor="#333333"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <EditText
+        android:id="@+id/EditText3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/final_text_page1_btn3_B1_E1"
+        android:inputType="textCapSentences"
+        android:background="@drawable/edittext_bg"
+        app:layout_constraintTop_toBottomOf="@id/textView6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="4dp"/>
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/final_text_page1_btn3_B1_T2"
+        android:textSize="16sp"
+        android:textColor="#333333"
+        app:layout_constraintTop_toBottomOf="@id/EditText3"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"/>
+
+    <EditText
+        android:id="@+id/EditText4"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:hint="@string/final_text_page1_btn3_B1_E2"
+        android:inputType="textMultiLine"
+        android:gravity="top"
+        android:background="@drawable/edittext_bg"
+        app:layout_constraintTop_toBottomOf="@id/textView7"
+        app:layout_constraintBottom_toTopOf="@id/textView8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/final_text_page1_btn3_B1_T3"
+        android:textSize="16sp"
+        android:textColor="#333333"
+        app:layout_constraintTop_toBottomOf="@id/EditText4"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <EditText
+        android:id="@+id/EditText5"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/final_text_page1_btn3_B1_E3"
+        android:inputType="datetime"
+        android:background="@drawable/edittext_bg"
+        app:layout_constraintTop_toBottomOf="@id/textView8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="4dp"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/EditText5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="24dp">
+
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/final_text_page1_btn3_B1_B1"
+            android:layout_marginEnd="8dp"
+            android:backgroundTint="#4CAF50"
+            android:textColor="#FFFFFF"/>
+
+        <Button
+            android:id="@+id/btn_cancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/final_text_page1_btn3_B1_B2"
+            android:layout_marginStart="8dp"
+            android:backgroundTint="#F44336"
+            android:textColor="#FFFFFF"/>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
