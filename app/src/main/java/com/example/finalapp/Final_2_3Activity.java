@@ -1,5 +1,7 @@
 package com.example.finalapp;
 
+
+
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
@@ -14,8 +16,8 @@ import androidx.appcompat.app.AppCompatActivity;
 public class Final_2_3Activity extends AppCompatActivity {
 
     private EditText etSportName, etSportNote;
-    private TextView tvTimer, tvSportName, tvTime, tvNote, tvCalories;
-    private Button btnPause, btnStop, btnNew;
+    private TextView tvTimer, tvSportName, tvTime, tvNote;
+    private Button btnStart, btnPause, btnStop, btnNew;
     private LinearLayout llResult;
 
     private long startTime = 0L;
@@ -52,11 +54,23 @@ public class Final_2_3Activity extends AppCompatActivity {
         tvSportName = findViewById(R.id.tv_sport_name);
         tvTime = findViewById(R.id.tv_time);
         tvNote = findViewById(R.id.tv_note);
-        tvCalories = findViewById(R.id.tv_calories);
+        btnStart = findViewById(R.id.btn_start);
         btnPause = findViewById(R.id.btn_pause);
         btnStop = findViewById(R.id.btn_stop);
         btnNew = findViewById(R.id.btn_new);
         llResult = findViewById(R.id.ll_result);
+
+        btnStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!isRunning) {
+                    startTime = SystemClock.uptimeMillis();
+                    customHandler.postDelayed(updateTimerThread, 0);
+                    isRunning = true;
+                    btnPause.setText("暂停");
+                }
+            }
+        });
 
         btnPause.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,17 +98,15 @@ public class Final_2_3Activity extends AppCompatActivity {
                 String sportName = etSportName.getText().toString();
                 String note = etSportNote.getText().toString();
                 String time = tvTimer.getText().toString();
-                int calories = calculateCalories(updatedTime); // 假设每分钟消耗10卡路里
 
                 tvSportName.setText("运动方式：" + sportName);
                 tvTime.setText("运动时间：" + time);
                 tvNote.setText("备注：" + note);
-                tvCalories.setText("消耗卡路里：" + calories);
 
                 llResult.setVisibility(View.VISIBLE);
 
                 // 保存运动记录到数据库或文件
-                saveSportRecord(sportName, time, note, calories);
+                saveSportRecord(sportName, time, note);
 
                 btnPause.setText("暂停");
                 timeSwapBuff = 0;
@@ -116,15 +128,10 @@ public class Final_2_3Activity extends AppCompatActivity {
         });
     }
 
-    private int calculateCalories(long timeInMillis) {
-        // 假设每分钟消耗10卡路里
-        return (int) (timeInMillis / 60000) * 10;
-    }
-
-    private void saveSportRecord(String sportName, String time, String note, int calories) {
+    private void saveSportRecord(String sportName, String time, String note) {
         // 这里可以将运动记录保存到数据库或文件中
         // 示例：保存到文件
-        String record = sportName + "," + time + "," + note + "," + calories + "\n";
+        String record = sportName + "," + time + "," + note + "\n";
         // 将记录写入文件
         // File file = new File(getExternalFilesDir(null), "sport_records.txt");
         // try (FileOutputStream fos = new FileOutputStream(file, true)) {

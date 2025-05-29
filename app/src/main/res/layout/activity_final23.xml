@@ -40,6 +40,14 @@
         android:orientation="horizontal"
         android:layout_marginTop="16dp">
 
+        <!-- 开始按钮 -->
+        <Button
+            android:id="@+id/btn_start"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="开始" />
+
         <!-- 暂停按钮 -->
         <Button
             android:id="@+id/btn_pause"
@@ -55,14 +63,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="结束" />
-
-        <!-- 新建运动按钮 -->
-        <Button
-            android:id="@+id/btn_new"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="新建运动" />
     </LinearLayout>
 
     <!-- 显示运动结果 -->
@@ -94,12 +94,13 @@
             android:layout_height="wrap_content"
             android:text="备注："
             android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/tv_calories"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="消耗卡路里："
-            android:textSize="18sp" />
     </LinearLayout>
+
+    <!-- 新建运动按钮 -->
+    <Button
+        android:id="@+id/btn_new"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="新建运动"
+        android:layout_marginTop="16dp" />
 </LinearLayout>
