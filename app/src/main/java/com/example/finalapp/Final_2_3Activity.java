@@ -1,24 +1,25 @@
 package com.example.finalapp;
 
-
-
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
+
 public class Final_2_3Activity extends AppCompatActivity {
 
     private EditText etSportName, etSportNote;
-    private TextView tvTimer, tvSportName, tvTime, tvNote;
+    private TextView tvTimer;
     private Button btnStart, btnPause, btnStop, btnNew;
-    private LinearLayout llResult;
+    private ListView lvSportRecords;
 
     private long startTime = 0L;
     private long timeInMilliseconds = 0L;
@@ -43,6 +44,9 @@ public class Final_2_3Activity extends AppCompatActivity {
         }
     };
 
+    private ArrayList<String> sportRecords = new ArrayList<>();
+    private ArrayAdapter<String> adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,14 +55,14 @@ public class Final_2_3Activity extends AppCompatActivity {
         etSportName = findViewById(R.id.et_sport_name);
         etSportNote = findViewById(R.id.et_sport_note);
         tvTimer = findViewById(R.id.tv_timer);
-        tvSportName = findViewById(R.id.tv_sport_name);
-        tvTime = findViewById(R.id.tv_time);
-        tvNote = findViewById(R.id.tv_note);
         btnStart = findViewById(R.id.btn_start);
         btnPause = findViewById(R.id.btn_pause);
         btnStop = findViewById(R.id.btn_stop);
         btnNew = findViewById(R.id.btn_new);
-        llResult = findViewById(R.id.ll_result);
+        lvSportRecords = findViewById(R.id.lv_sport_records);
+
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, sportRecords);
+        lvSportRecords.setAdapter(adapter);
 
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,45 +103,36 @@ public class Final_2_3Activity extends AppCompatActivity {
                 String note = etSportNote.getText().toString();
                 String time = tvTimer.getText().toString();
 
-                tvSportName.setText("运动方式：" + sportName);
-                tvTime.setText("运动时间：" + time);
-                tvNote.setText("备注：" + note);
+                String record = "运动方式：" + sportName + "\n" +
+                        "运动时间：" + time + "\n" +
+                        "备注：" + note;
 
-                llResult.setVisibility(View.VISIBLE);
+                sportRecords.add(record);
+                adapter.notifyDataSetChanged();
 
-                // 保存运动记录到数据库或文件
-                saveSportRecord(sportName, time, note);
+                // 清空输入框和计时器
+                etSportName.setText("");
+                etSportNote.setText("");
+                tvTimer.setText("00:00:00");
 
                 btnPause.setText("暂停");
                 timeSwapBuff = 0;
+                updatedTime = 0;
             }
         });
 
         btnNew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // 清空输入框和计时器
                 etSportName.setText("");
                 etSportNote.setText("");
                 tvTimer.setText("00:00:00");
-                llResult.setVisibility(View.GONE);
                 timeSwapBuff = 0;
                 updatedTime = 0;
                 isRunning = false;
                 btnPause.setText("暂停");
             }
         });
-    }
-
-    private void saveSportRecord(String sportName, String time, String note) {
-        // 这里可以将运动记录保存到数据库或文件中
-        // 示例：保存到文件
-        String record = sportName + "," + time + "," + note + "\n";
-        // 将记录写入文件
-        // File file = new File(getExternalFilesDir(null), "sport_records.txt");
-        // try (FileOutputStream fos = new FileOutputStream(file, true)) {
-        //     fos.write(record.getBytes());
-        // } catch (IOException e) {
-        //     e.printStackTrace();
-        // }
     }
 }
