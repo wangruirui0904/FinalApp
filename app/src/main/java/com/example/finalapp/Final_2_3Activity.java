@@ -12,12 +12,15 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 public class Final_2_3Activity extends AppCompatActivity {
 
     private EditText etSportName, etSportNote;
-    private TextView tvTimer;
+    private TextView tvTimer, tvDateTime;
     private Button btnStart, btnPause, btnStop, btnNew;
     private ListView lvSportRecords;
 
@@ -55,6 +58,7 @@ public class Final_2_3Activity extends AppCompatActivity {
         etSportName = findViewById(R.id.et_sport_name);
         etSportNote = findViewById(R.id.et_sport_note);
         tvTimer = findViewById(R.id.tv_timer);
+        tvDateTime = findViewById(R.id.tv_date_time);
         btnStart = findViewById(R.id.btn_start);
         btnPause = findViewById(R.id.btn_pause);
         btnStop = findViewById(R.id.btn_stop);
@@ -102,8 +106,10 @@ public class Final_2_3Activity extends AppCompatActivity {
                 String sportName = etSportName.getText().toString();
                 String note = etSportNote.getText().toString();
                 String time = tvTimer.getText().toString();
+                String dateTime = tvDateTime.getText().toString();
 
-                String record = "运动方式：" + sportName + "\n" +
+                String record = "日期和时间：" + dateTime + "\n" +
+                        "运动方式：" + sportName + "\n" +
                         "运动时间：" + time + "\n" +
                         "备注：" + note;
 
@@ -134,5 +140,14 @@ public class Final_2_3Activity extends AppCompatActivity {
                 btnPause.setText("暂停");
             }
         });
+
+        // 设置当前日期和时间
+        updateDateTime();
+    }
+
+    private void updateDateTime() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        String dateTime = dateFormat.format(new Date());
+        tvDateTime.setText("日期和时间：" + dateTime);
     }
 }

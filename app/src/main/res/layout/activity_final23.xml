@@ -23,6 +23,15 @@
         android:inputType="text"
         android:maxLength="100" />
 
+    <!-- 当前日期和时间 -->
+    <TextView
+        android:id="@+id/tv_date_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="日期和时间："
+        android:textSize="16sp"
+        android:layout_marginTop="16dp" />
+
     <!-- 计时显示 -->
     <TextView
         android:id="@+id/tv_timer"
