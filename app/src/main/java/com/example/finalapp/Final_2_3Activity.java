@@ -1,27 +1,31 @@
 package com.example.finalapp;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.Locale;
 
 public class Final_2_3Activity extends AppCompatActivity {
 
     private EditText etSportName, etSportNote;
     private TextView tvTimer, tvDateTime;
-    private Button btnStart, btnPause, btnStop, btnNew;
+    private Button btnStart, btnPause, btnStop, btnNew, btnSelectDateTime;
     private ListView lvSportRecords;
 
     private long startTime = 0L;
@@ -50,6 +54,8 @@ public class Final_2_3Activity extends AppCompatActivity {
     private ArrayList<String> sportRecords = new ArrayList<>();
     private ArrayAdapter<String> adapter;
 
+    private int selectedYear, selectedMonth, selectedDay, selectedHour, selectedMinute;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +69,7 @@ public class Final_2_3Activity extends AppCompatActivity {
         btnPause = findViewById(R.id.btn_pause);
         btnStop = findViewById(R.id.btn_stop);
         btnNew = findViewById(R.id.btn_new);
+        btnSelectDateTime = findViewById(R.id.btn_select_date_time);
         lvSportRecords = findViewById(R.id.lv_sport_records);
 
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, sportRecords);
@@ -134,6 +141,7 @@ public class Final_2_3Activity extends AppCompatActivity {
                 etSportName.setText("");
                 etSportNote.setText("");
                 tvTimer.setText("00:00:00");
+                tvDateTime.setText("日期和时间：");
                 timeSwapBuff = 0;
                 updatedTime = 0;
                 isRunning = false;
@@ -141,13 +149,54 @@ public class Final_2_3Activity extends AppCompatActivity {
             }
         });
 
-        // 设置当前日期和时间
-        updateDateTime();
+        btnSelectDateTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDateTimePicker();
+            }
+        });
+    }
+
+    private void showDateTimePicker() {
+        final Calendar calendar = Calendar.getInstance();
+        selectedYear = calendar.get(Calendar.YEAR);
+        selectedMonth = calendar.get(Calendar.MONTH);
+        selectedDay = calendar.get(Calendar.DAY_OF_MONTH);
+        selectedHour = calendar.get(Calendar.HOUR_OF_DAY);
+        selectedMinute = calendar.get(Calendar.MINUTE);
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                selectedYear = year;
+                selectedMonth = month;
+                selectedDay = dayOfMonth;
+                showTimePicker();
+            }
+        }, selectedYear, selectedMonth, selectedDay);
+
+        datePickerDialog.show();
+    }
+
+    private void showTimePicker() {
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                selectedHour = hourOfDay;
+                selectedMinute = minute;
+                updateDateTime();
+            }
+        }, selectedHour, selectedMinute, true);
+
+        timePickerDialog.show();
     }
 
     private void updateDateTime() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
-        String dateTime = dateFormat.format(new Date());
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(selectedYear, selectedMonth, selectedDay, selectedHour, selectedMinute);
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
+        String dateTime = dateFormat.format(calendar.getTime());
         tvDateTime.setText("日期和时间：" + dateTime);
     }
 }
