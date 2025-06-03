@@ -1,34 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp">
 
-    <EditText
-        android:id="@+id/et_food_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="输入食物名称" />
-
-    <Button
-        android:id="@+id/btn_search"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="查询热量" />
-
+    <!-- 标题 -->
     <TextView
-        android:id="@+id/tv_result"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="查询结果将显示在这里"
-        android:textSize="16sp"
-        android:padding="8dp" />
+        android:text="最新健康资讯"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:paddingBottom="16dp"/>
 
-    <Button
-        android:id="@+id/btn_recipe_suggestion"
+    <!-- 加载提示 -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"/>
+
+    <!-- 错误提示 -->
+    <TextView
+        android:id="@+id/tvError"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="获取健康食谱建议" />
+        android:textColor="#FF0000"
+        android:visibility="gone"
+        android:padding="8dp"/>
 
+    <!-- 资讯列表 -->
+    <ListView
+        android:id="@+id/newsListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </LinearLayout>
