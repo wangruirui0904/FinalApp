@@ -1,174 +1,69 @@
 package com.example.finalapp;
-import android.content.Context;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.TextView;
+
+
 import androidx.appcompat.app.AppCompatActivity;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
-import android.view.LayoutInflater;
-import android.view.ViewGroup;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class Final_2_4Activity extends AppCompatActivity {
-    private ListView newsListView;
-    private ProgressBar progressBar;
-    private TextView tvError;
-    private List<HealthNews> newsList = new ArrayList<>();
+
+    private ListView listView;
+    private RecipeAdapter recipeAdapter;
+    private List<Recipe> recipeList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_final24);
 
-        // 初始化视图
-        newsListView = findViewById(R.id.newsListView);
-        progressBar = findViewById(R.id.progressBar);
-        tvError = findViewById(R.id.tvError);
+        listView = findViewById(R.id.listView);
 
-        // 设置列表点击事件
-        newsListView.setOnItemClickListener((parent, view, position, id) -> {
-            HealthNews news = newsList.get(position);
-            Toast.makeText(this, "正在打开: " + news.getTitle(), Toast.LENGTH_SHORT).show();
-            // 这里可以添加打开详情页的代码
-        });
+        // 初始化适配器
+        recipeAdapter = new RecipeAdapter(this, R.layout.item_recipe, recipeList);
+        listView.setAdapter(recipeAdapter);
 
-        // 开始加载数据
-        loadHealthNews();
+        // 模拟从网页提取数据
+        extractDataFromWeb();
     }
 
-    private void loadHealthNews() {
-        progressBar.setVisibility(View.VISIBLE);
-        tvError.setVisibility(View.GONE);
-
-        new FetchNewsTask().execute();
-    }
-
-    private class FetchNewsTask extends AsyncTask<Void, Void, List<HealthNews>> {
-        private String errorMessage = "";
-
-        @Override
-        protected List<HealthNews> doInBackground(Void... voids) {
-            List<HealthNews> result = new ArrayList<>();
-
+    private void extractDataFromWeb() {
+        new Thread(() -> {
             try {
-                // 从百度健康获取健康资讯
-                Document doc = Jsoup.connect("https://jiankang.baidu.com/healthnews")
-                        .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
-                        .timeout(10000)
-                        .get();
+                OkHttpClient client = new OkHttpClient();
+                Request request = new Request.Builder()
+                        .url("https://home.meishichina.com/recipe/jiankangshipu/")
+                        .build();
+                Response response = client.newCall(request).execute();
+                String html = response.body().string();
 
-                // 提取新闻列表
-                Elements newsItems = doc.select(".news-list li");
-                for (Element item : newsItems) {
-                    Element titleElement = item.selectFirst(".title");
-                    Element dateElement = item.selectFirst(".date");
+                // 提取标题和原料
+                Pattern patternTitle = Pattern.compile("title=\"(.*?)\"");
+                Pattern patternIngredients = Pattern.compile("<p class=\"subcontent\">(.*?)</p>");
 
-                    if (titleElement != null && dateElement != null) {
-                        String title = titleElement.text();
-                        String date = dateElement.text();
-                        String url = titleElement.absUrl("href");
+                Matcher matcherTitle = patternTitle.matcher(html);
+                Matcher matcherIngredients = patternIngredients.matcher(html);
 
-                        result.add(new HealthNews(title, date, url));
-                    }
+                while (matcherTitle.find() && matcherIngredients.find()) {
+                    String title = matcherTitle.group(1);
+                    String ingredients = matcherIngredients.group(1);
+                    recipeList.add(new Recipe(title, ingredients));
                 }
 
-                // 如果结果为空，尝试备用选择器
-                if (result.isEmpty()) {
-                    Elements backupItems = doc.select(".list-item");
-                    for (Element item : backupItems) {
-                        Element titleElement = item.selectFirst("a");
-                        Element dateElement = item.selectFirst(".time");
-
-                        if (titleElement != null && dateElement != null) {
-                            String title = titleElement.text();
-                            String date = dateElement.text();
-                            String url = titleElement.absUrl("href");
-
-                            result.add(new HealthNews(title, date, url));
-                        }
-                    }
-                }
+                runOnUiThread(() -> {
+                    recipeAdapter.notifyDataSetChanged();
+                });
 
             } catch (Exception e) {
-                errorMessage = e.getMessage();
+                Log.e("Final_2_4Activity", "Error extracting data from web: " + e.getMessage());
             }
-
-            return result;
-        }
-
-        @Override
-        protected void onPostExecute(List<HealthNews> result) {
-            progressBar.setVisibility(View.GONE);
-
-            if (result.isEmpty()) {
-                tvError.setText("获取数据失败: " + (errorMessage.isEmpty() ? "无数据" : errorMessage));
-                tvError.setVisibility(View.VISIBLE);
-            } else {
-                newsList = result;
-                NewsAdapter adapter = new NewsAdapter(Final_2_4Activity.this, newsList);
-                newsListView.setAdapter(adapter);
-            }
-        }
-    }
-
-    // 内部类 HealthNews
-    private static class HealthNews {
-        private String title;
-        private String date;
-        private String url;
-
-        public HealthNews(String title, String date, String url) {
-            this.title = title;
-            this.date = date;
-            this.url = url;
-        }
-
-        public String getTitle() {
-            return title;
-        }
-
-        public String getDate() {
-            return date;
-        }
-
-        public String getUrl() {
-            return url;
-        }
-    }
-
-    // 内部类 NewsAdapter
-    private static class NewsAdapter extends ArrayAdapter<HealthNews> {
-        public NewsAdapter(Context context, List<HealthNews> newsList) {
-            super(context, 0, newsList);
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            HealthNews news = getItem(position);
-
-            if (convertView == null) {
-                convertView = LayoutInflater.from(getContext())
-                        .inflate(android.R.layout.simple_list_item_2, parent, false);
-            }
-
-            TextView tvTitle = convertView.findViewById(android.R.id.text1);
-            TextView tvDate = convertView.findViewById(android.R.id.text2);
-
-            tvTitle.setText(news.getTitle());
-            tvDate.setText(news.getDate());
-
-            return convertView;
-
-        }
+        }).start();
     }
 }

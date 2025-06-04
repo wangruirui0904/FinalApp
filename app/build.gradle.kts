@@ -42,3 +42,6 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
 }
+dependencies {
+    implementation ("com.squareup.okhttp3:okhttp:4.9.3")
+}
