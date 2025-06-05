@@ -41,18 +41,15 @@ public class Final_2_4Activity extends AppCompatActivity {
                 Response response = client.newCall(request).execute();
                 String html = response.body().string();
 
-                // 提取每个<div class="detail">中的内容
                 Pattern patternDetail = Pattern.compile("<div class=\"detail\">(.*?)</div>", Pattern.DOTALL);
                 Matcher matcherDetail = patternDetail.matcher(html);
 
                 while (matcherDetail.find()) {
                     String detailContent = matcherDetail.group(1);
 
-                    // 在<div class="detail">内容中提取标题
                     Pattern patternTitle = Pattern.compile("title=\"(.*?)\"");
                     Matcher matcherTitle = patternTitle.matcher(detailContent);
 
-                    // 提取原料信息
                     Pattern patternIngredients = Pattern.compile("<p class=\"subcontent\">(.*?)</p>");
                     Matcher matcherIngredients = patternIngredients.matcher(detailContent);
 

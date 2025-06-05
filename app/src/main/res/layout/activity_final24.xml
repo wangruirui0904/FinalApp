@@ -5,9 +5,25 @@
     android:background="@drawable/background"
     android:orientation="vertical">
 
+    <TextView
+        android:id="@+id/tv2_4_1"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/green_color"
+        android:gravity="center"
+        android:text="@string/final_text_page1_btn5"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:divider="@android:color/darker_gray"
+        android:dividerHeight="1dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp" />
 
 </LinearLayout>
