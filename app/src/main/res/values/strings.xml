@@ -21,7 +21,7 @@
     <string name="final_text_page1_btn3_B1_T2">内容</string>
     <string name="final_text_page1_btn3_B1_E2">输入内容</string>
     <string name="final_text_page1_btn3_B1_T3">时间</string>
-    <string name="final_text_page1_btn3_B1_E3">输入时间（例如：2023-12-31）</string>
+    <string name="final_text_page1_btn3_B1_E3">输入时间（例如：2025-6-6）</string>
     <string name="final_text_page1_btn3_B1_B1">保存</string>
     <string name="final_text_page1_btn3_B1_B2">取消</string>
 </resources>
