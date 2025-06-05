@@ -13,6 +13,8 @@
     <string name="final_text_page1_btn2_E1">请输入您的身高（例如1.75）</string>
     <string name="final_text_page1_btn2_T2">体重（千克）</string>
     <string name="final_text_page1_btn2_E2">请输入您的体重（例如65）</string>
+    <string name="final_text_page1_radioMale">男</string>
+    <string name="final_text_page1_radioFemale">女</string>
     <string name="final_text_page1_btn2_B1">计算BMI</string>
     <string name="final_text_page1_btn3_T1">喵喵日记</string>
     <string name="final_text_page1_btn3_B1">新建</string>
