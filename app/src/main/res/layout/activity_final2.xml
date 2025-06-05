@@ -11,73 +11,97 @@
     <TextView
         android:id="@+id/textView3"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:background="@color/green_color"
         android:gravity="center"
         android:text="@string/final_text_page1"
+        android:textColor="@color/pink_color"
+        android:textSize="30sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        android:textSize="24sp"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="0dp" />
-
-    <ImageView
-        android:id="@+id/my_image_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/background2"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
-        tools:layout_editor_absoluteX="16dp" />
-
-    <Button
-        android:id="@+id/button_2"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:backgroundTint="#4CAF50"
-        android:text="@string/final_text_page1_btn2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.202"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/button_3"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:text="@string/final_text_page1_btn3"
-        android:backgroundTint="#4CAF50"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <!-- 中间图片 -->
+    <ImageView
+        android:id="@+id/my_image_view"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="@string/app_name"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.774"
-        app:layout_constraintStart_toEndOf="@+id/button_2"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <!-- 按钮网格 -->
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.7" />
+
+    <!-- 第一行按钮 -->
+    <Button
+        android:id="@+id/button_2"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/rounded_button"
+        android:text="@string/final_text_page1_btn2"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_image_view" />
 
     <Button
-        android:id="@+id/button_4"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:text="@string/final_text_page1_btn4"
-        android:backgroundTint="#4CAF50"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/button_3"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/rounded_button"
+        android:text="@string/final_text_page1_btn3"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/button_2"
-        app:layout_constraintTop_toBottomOf="@+id/button_2"
-        app:layout_constraintVertical_bias="0.516" />
+        app:layout_constraintStart_toStartOf="@+id/guideline_vertical"
+        app:layout_constraintTop_toBottomOf="@+id/my_image_view" />
+
+    <!-- 第二行按钮 -->
+    <Button
+        android:id="@+id/button_4"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/rounded_button"
+        android:text="@string/final_text_page1_btn4"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline_horizontal" />
 
     <Button
         android:id="@+id/button_5"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/rounded_button"
         android:text="@string/final_text_page1_btn5"
-        android:backgroundTint="#4CAF50"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.893"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.835" />
+        app:layout_constraintStart_toStartOf="@+id/guideline_vertical"
+        app:layout_constraintTop_toTopOf="@+id/guideline_horizontal" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

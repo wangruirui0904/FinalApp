@@ -1,6 +1,5 @@
 package com.example.finalapp;
 
-
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -42,16 +41,26 @@ public class Final_2_4Activity extends AppCompatActivity {
                 Response response = client.newCall(request).execute();
                 String html = response.body().string();
 
-                Pattern patternTitle = Pattern.compile("title=\"(.*?)\"");
-                Pattern patternIngredients = Pattern.compile("<p class=\"subcontent\">(.*?)</p>");
+                // 提取每个<div class="detail">中的内容
+                Pattern patternDetail = Pattern.compile("<div class=\"detail\">(.*?)</div>", Pattern.DOTALL);
+                Matcher matcherDetail = patternDetail.matcher(html);
 
-                Matcher matcherTitle = patternTitle.matcher(html);
-                Matcher matcherIngredients = patternIngredients.matcher(html);
+                while (matcherDetail.find()) {
+                    String detailContent = matcherDetail.group(1);
 
-                while (matcherTitle.find() && matcherIngredients.find()) {
-                    String title = matcherTitle.group(1);
-                    String ingredients = matcherIngredients.group(1);
-                    recipeList.add(new Recipe(title, ingredients));
+                    // 在<div class="detail">内容中提取标题
+                    Pattern patternTitle = Pattern.compile("title=\"(.*?)\"");
+                    Matcher matcherTitle = patternTitle.matcher(detailContent);
+
+                    // 提取原料信息
+                    Pattern patternIngredients = Pattern.compile("<p class=\"subcontent\">(.*?)</p>");
+                    Matcher matcherIngredients = patternIngredients.matcher(detailContent);
+
+                    if (matcherTitle.find() && matcherIngredients.find()) {
+                        String title = matcherTitle.group(1);
+                        String ingredients = matcherIngredients.group(1);
+                        recipeList.add(new Recipe(title, ingredients));
+                    }
                 }
 
                 runOnUiThread(() -> {

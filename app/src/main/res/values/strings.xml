@@ -2,6 +2,7 @@
     <string name="app_name">FinalApp</string>
     <string name="final_text_welcome1">欢迎来到喵喵健康</string>
     <string name="final_text_welcome2">我是你的健康助手小u</string>
+    <string name="final_text_welcome3">这里将为您提供最健康的生活方式，同时享受美食带来的乐趣！</string>
     <string name="final_btn_1">点击进入</string>
     <string name="final_text_page1">首页</string>
     <string name="final_text_page1_btn2">BMI喵星人</string>
