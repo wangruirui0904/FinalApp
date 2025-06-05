@@ -18,7 +18,6 @@ public class Final_2_2_1 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_final221);
-        // 初始化视图
         etTitle = findViewById(R.id.EditText3);
         etContent = findViewById(R.id.EditText4);
         etTime = findViewById(R.id.EditText5);

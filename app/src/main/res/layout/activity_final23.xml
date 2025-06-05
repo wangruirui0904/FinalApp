@@ -2,10 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     android:orientation="vertical"
     android:padding="16dp">
 
-    <!-- 输入运动方式 -->
     <EditText
         android:id="@+id/et_sport_name"
         android:layout_width="match_parent"
@@ -14,7 +14,6 @@
         android:inputType="text"
         android:maxLength="50" />
 
-    <!-- 备注 -->
     <EditText
         android:id="@+id/et_sport_note"
         android:layout_width="match_parent"
@@ -23,7 +22,6 @@
         android:inputType="text"
         android:maxLength="100" />
 
-    <!-- 日期和时间选择 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -45,7 +43,6 @@
             android:text="选择日期和时间" />
     </LinearLayout>
 
-    <!-- 计时显示 -->
     <TextView
         android:id="@+id/tv_timer"
         android:layout_width="match_parent"
@@ -55,14 +52,12 @@
         android:gravity="center"
         android:layout_marginTop="16dp" />
 
-    <!-- 按钮布局 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="16dp">
 
-        <!-- 开始按钮 -->
         <Button
             android:id="@+id/btn_start"
             android:layout_width="0dp"
@@ -70,7 +65,6 @@
             android:layout_weight="1"
             android:text="开始" />
 
-        <!-- 暂停按钮 -->
         <Button
             android:id="@+id/btn_pause"
             android:layout_width="0dp"
@@ -78,7 +72,6 @@
             android:layout_weight="1"
             android:text="暂停" />
 
-        <!-- 结束按钮 -->
         <Button
             android:id="@+id/btn_stop"
             android:layout_width="0dp"
@@ -87,7 +80,6 @@
             android:text="结束" />
     </LinearLayout>
 
-    <!-- 运动记录列表 -->
     <ListView
         android:id="@+id/lv_sport_records"
         android:layout_width="match_parent"
@@ -96,7 +88,6 @@
         android:divider="@android:color/darker_gray"
         android:dividerHeight="1dp" />
 
-    <!-- 新建运动按钮 -->
     <Button
         android:id="@+id/btn_new"
         android:layout_width="match_parent"

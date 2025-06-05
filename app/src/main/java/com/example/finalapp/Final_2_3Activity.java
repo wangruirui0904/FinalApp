@@ -123,7 +123,6 @@ public class Final_2_3Activity extends AppCompatActivity {
                 sportRecords.add(record);
                 adapter.notifyDataSetChanged();
 
-                // 清空输入框和计时器
                 etSportName.setText("");
                 etSportNote.setText("");
                 tvTimer.setText("00:00:00");
@@ -137,7 +136,6 @@ public class Final_2_3Activity extends AppCompatActivity {
         btnNew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 清空输入框和计时器
                 etSportName.setText("");
                 etSportNote.setText("");
                 tvTimer.setText("00:00:00");

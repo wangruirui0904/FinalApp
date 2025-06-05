@@ -26,11 +26,9 @@ public class Final_2_4Activity extends AppCompatActivity {
 
         listView = findViewById(R.id.listView);
 
-        // 初始化适配器
         recipeAdapter = new RecipeAdapter(this, R.layout.item_recipe, recipeList);
         listView.setAdapter(recipeAdapter);
 
-        // 模拟从网页提取数据
         extractDataFromWeb();
     }
 
@@ -44,7 +42,6 @@ public class Final_2_4Activity extends AppCompatActivity {
                 Response response = client.newCall(request).execute();
                 String html = response.body().string();
 
-                // 提取标题和原料
                 Pattern patternTitle = Pattern.compile("title=\"(.*?)\"");
                 Pattern patternIngredients = Pattern.compile("<p class=\"subcontent\">(.*?)</p>");
 

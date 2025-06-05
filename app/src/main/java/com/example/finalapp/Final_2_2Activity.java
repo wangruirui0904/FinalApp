@@ -31,14 +31,12 @@ public class Final_2_2Activity extends AppCompatActivity {
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, finalList);
         listView.setAdapter(adapter);
 
-        // 新建按钮点击事件
         btnRemember.setOnClickListener(v -> {
             Intent intent = new Intent(Final_2_2Activity.this, Final_2_2_1.class);
             startActivityForResult(intent, 1); // 使用startActivityForResult接收返回数据
         });
     }
 
-    // 处理从新建页面返回的数据
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -48,10 +46,9 @@ public class Final_2_2Activity extends AppCompatActivity {
             String content = data.getStringExtra("content");
             String time = data.getStringExtra("time");
 
-            // 格式化备忘录条目
             String memoItem = "[" + time + "] " + title + "\n" + content;
             finalList.add(memoItem);
-            adapter.notifyDataSetChanged(); // 刷新列表
+            adapter.notifyDataSetChanged();
         }
     }
 }
