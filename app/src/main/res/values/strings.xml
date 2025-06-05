@@ -26,4 +26,14 @@
     <string name="final_text_page1_btn3_B1_E3">输入时间（例如：2025-6-6）</string>
     <string name="final_text_page1_btn3_B1_B1">保存</string>
     <string name="final_text_page1_btn3_B1_B2">取消</string>
+    <string name="final_text_page1_btn4_E1">请输入运动方式</string>
+    <string name="final_text_page1_btn4_E2">请输入备注</string>
+    <string name="final_text_page1_btn4_T1">日期和时间：</string>
+    <string name="final_text_page1_btn4_T2">00:00:00</string>
+
+    <string name="final_text_page1_btn4_B1">请选择日期和时间</string>
+    <string name="final_text_page1_btn4_B2">开始</string>
+    <string name="final_text_page1_btn4_B3">暂停</string>
+    <string name="final_text_page1_btn4_B4">结束</string>
+    <string name="final_text_page1_btn4_B5">新建运动</string>
 </resources>

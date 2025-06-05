@@ -61,16 +61,16 @@ public class Final_2_3Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_final23);
 
-        etSportName = findViewById(R.id.et_sport_name);
-        etSportNote = findViewById(R.id.et_sport_note);
-        tvTimer = findViewById(R.id.tv_timer);
-        tvDateTime = findViewById(R.id.tv_date_time);
-        btnStart = findViewById(R.id.btn_start);
-        btnPause = findViewById(R.id.btn_pause);
-        btnStop = findViewById(R.id.btn_stop);
-        btnNew = findViewById(R.id.btn_new);
-        btnSelectDateTime = findViewById(R.id.btn_select_date_time);
-        lvSportRecords = findViewById(R.id.lv_sport_records);
+        etSportName = findViewById(R.id.et2_3_1);
+        etSportNote = findViewById(R.id.et2_3_2);
+        tvTimer = findViewById(R.id.tV2_3_3);
+        tvDateTime = findViewById(R.id.tV2_3_2);
+        btnStart = findViewById(R.id.btn_2_3_2);
+        btnPause = findViewById(R.id.btn_2_3_3);
+        btnStop = findViewById(R.id.btn_2_3_4);
+        btnNew = findViewById(R.id.btn_2_3_5);
+        btnSelectDateTime = findViewById(R.id.btn_2_3_1);
+        lvSportRecords = findViewById(R.id.lv_2_3_1);
 
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, sportRecords);
         lvSportRecords.setAdapter(adapter);

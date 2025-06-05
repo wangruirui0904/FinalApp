@@ -6,21 +6,37 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <EditText
-        android:id="@+id/et_sport_name"
+    <TextView
+        android:id="@+id/tV2_3_1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="请输入运动方式"
-        android:inputType="text"
-        android:maxLength="50" />
+        android:layout_height="60dp"
+        android:background="@color/green_color"
+        android:gravity="center"
+        android:text="@string/final_text_page1_btn4"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/et_sport_note"
+        android:id="@+id/et2_3_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="请输入备注"
+        android:hint="@string/final_text_page1_btn4_E1"
         android:inputType="text"
-        android:maxLength="100" />
+        android:maxLength="50"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/edit_text_background"
+        android:padding="12dp" />
+
+    <EditText
+        android:id="@+id/et2_3_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/final_text_page1_btn4_E2"
+        android:inputType="text"
+        android:maxLength="100"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/edit_text_background"
+        android:padding="12dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,25 +45,28 @@
         android:layout_marginTop="16dp">
 
         <TextView
-            android:id="@+id/tv_date_time"
+            android:id="@+id/tV2_3_2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="日期和时间："
+            android:text="@string/final_text_page1_btn4_T1"
             android:textSize="16sp" />
 
         <Button
-            android:id="@+id/btn_select_date_time"
+            android:id="@+id/btn_2_3_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="选择日期和时间" />
+            android:text="@string/final_text_page1_btn4_B1"
+            android:backgroundTint="#4CAF50"
+            android:textColor="#FFFFFF"
+            android:padding="8dp" />
     </LinearLayout>
 
     <TextView
-        android:id="@+id/tv_timer"
+        android:id="@+id/tV2_3_3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="00:00:00"
+        android:text="@string/final_text_page1_btn4_T2"
         android:textSize="24sp"
         android:gravity="center"
         android:layout_marginTop="16dp" />
@@ -59,39 +78,53 @@
         android:layout_marginTop="16dp">
 
         <Button
-            android:id="@+id/btn_start"
+            android:id="@+id/btn_2_3_2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="开始" />
+            android:text="@string/final_text_page1_btn4_B2"
+            android:backgroundTint="#4CAF50"
+            android:textColor="#FFFFFF"
+            android:padding="8dp" />
 
         <Button
-            android:id="@+id/btn_pause"
+            android:id="@+id/btn_2_3_3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="暂停" />
+            android:text="@string/final_text_page1_btn4_B3"
+            android:backgroundTint="#FFC107"
+            android:textColor="#FFFFFF"
+            android:padding="8dp" />
 
         <Button
-            android:id="@+id/btn_stop"
+            android:id="@+id/btn_2_3_4"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="结束" />
+            android:text="@string/final_text_page1_btn4_B4"
+            android:backgroundTint="#F44336"
+            android:textColor="#FFFFFF"
+            android:padding="8dp" />
     </LinearLayout>
 
     <ListView
-        android:id="@+id/lv_sport_records"
+        android:id="@+id/lv_2_3_1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:divider="@android:color/darker_gray"
-        android:dividerHeight="1dp" />
+        android:dividerHeight="1dp"
+        android:layout_marginTop="16dp" />
 
     <Button
-        android:id="@+id/btn_new"
+        android:id="@+id/btn_2_3_5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="新建运动"
-        android:layout_marginTop="16dp" />
+        android:text="@string/final_text_page1_btn4_B5"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#4CAF50"
+        android:textColor="#FFFFFF"
+        android:padding="12dp" />
+
 </LinearLayout>
