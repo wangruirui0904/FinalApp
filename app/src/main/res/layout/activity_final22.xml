@@ -9,13 +9,13 @@
     tools:context=".Final_2_2Activity">
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/textView2_2"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:background="@color/green_color"
         android:gravity="center"
         android:text="@string/final_text_page1_btn3_T1"
-        android:textSize="24sp"
+        android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -29,14 +29,14 @@
         app:layout_constraintBottom_toTopOf="@id/Button3_1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView5" />
+        app:layout_constraintTop_toBottomOf="@id/textView2_2" />
 
     <Button
         android:id="@+id/Button3_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/final_text_page1_btn3_B1"
-        android:textSize="18sp"
+        android:textSize="20sp"
         android:backgroundTint="#4CAF50"
         android:textColor="#FFFFFF"
         android:paddingStart="32dp"
