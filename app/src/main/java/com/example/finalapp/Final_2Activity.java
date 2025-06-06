@@ -16,7 +16,7 @@ public class Final_2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_final2);
-       //点击每一个按钮跳转到相应的页面
+
         Button button2 = findViewById(R.id.button_2);
         button2.setOnClickListener(v -> {
             Intent intent = new Intent(Final_2Activity.this, Final_2_1Activity.class);
